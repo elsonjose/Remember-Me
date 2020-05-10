@@ -3,9 +3,13 @@ import getpass
 from selenium.webdriver import DesiredCapabilities
 import subprocess as sp
 from selenium.common.exceptions import NoSuchElementException
+import sys
+import os
 
 emailtext = input("ENTER EMAIL : ")
 passwordtext = getpass.getpass(prompt="ENTER PASSWORD : ")
+
+chromedriver_path =  os.path.abspath(sys.argv[1])
 
 if len(emailtext)!=0 and len(passwordtext)!=0 :
 
@@ -13,7 +17,7 @@ if len(emailtext)!=0 and len(passwordtext)!=0 :
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     options.add_argument("--incognito")
-    driver = webdriver.Chrome('/home/ej/PythonProjects/FaceSmasher/chromedriver',options=options)
+    driver = webdriver.Chrome(chromedriver_path,options=options)
     driver.get("https://www.facebook.com/events")
 
     email = driver.find_element_by_name("email")
